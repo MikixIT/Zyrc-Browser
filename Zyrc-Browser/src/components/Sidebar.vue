@@ -8,10 +8,13 @@
       @mouseenter="cancelAutoClose"
     >
       <div class="sidebar-header">
-        <div class="sidebar-settings-top">
-          <button class="settings-btn">⚙️ Settings</button>
-        </div>
-        <h2 class="zyrc-logo">Zyrc</h2>
+        <img
+          src="/Zyrc.ico"
+          alt="Logo Zyrc"
+          class="zyrc-icon"
+          @click="onLogoClick"
+        />
+        <h2 class="zyrc-logo glass-logo" @click="onLogoClick">Zyrc</h2>
         <button @click="addTab" class="add-tab" title="Nuova Tab">＋</button>
       </div>
       <transition-group name="tab-list" tag="ul" class="sidebar-tabs">
@@ -90,7 +93,7 @@ function setActiveTab(id: number) {
 
 function addTab() {
   const newId = Date.now();
-  tabs.value.push({ id: newId, title: "Nuova Tab", url: "https://google.com" });
+  tabs.value.push({ id: newId, title: "New Tab", url: "https://google.com" });
   activeTabId.value = newId;
 }
 
@@ -108,6 +111,10 @@ function closeTab(id: number) {
     }
   }
 }
+
+function onLogoClick() {
+  window.open("https://zyrc.dev", "_blank");
+}
 </script>
 
 <style scoped>
@@ -120,6 +127,26 @@ function closeTab(id: number) {
   font-size: 2rem;
   color: #fff;
   text-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
+}
+
+.zyrc-icon {
+  width: 72px; /* più grande */
+  height: 72px;
+  margin-bottom: 8px;
+  margin-top: 4px;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.13);
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.1);
+  transition: transform 0.38s cubic-bezier(0.77, 0, 0.18, 1),
+    box-shadow 0.38s cubic-bezier(0.77, 0, 0.18, 1), background 0.28s;
+}
+.zyrc-icon:hover {
+  transform: scale(1.13);
+  box-shadow: 0 8px 36px 0 rgba(255, 255, 255, 0.18),
+    0 4px 24px 0 rgba(0, 0, 0, 0.18);
+  background: rgba(255, 255, 255, 0.22);
+  cursor: pointer;
 }
 
 .sidebar-hotspot {
@@ -186,13 +213,12 @@ function closeTab(id: number) {
   background: rgba(255, 255, 255, 0.18);
   color: #ffd700;
 }
-
 .sidebar-tab {
   width: 85%;
   min-height: 38px;
   max-height: 38px;
   padding: 0 12px 0 18px;
-  margin: 2px auto;
+  margin: 0 0 12px 0;
   display: flex;
   align-items: center;
   justify-content: flex-start;
