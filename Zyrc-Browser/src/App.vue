@@ -1,28 +1,76 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Sidebar from "./components/Sidebar.vue";
+import BrowserWindow from "./components/BrowserWindow.vue";
+</script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div id="app" class="browser-ui-font">
+    <Sidebar />
+    <BrowserWindow />
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.flex {
+  display: flex;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.h-screen {
+  height: 100vh;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+aside {
+  width: 260px;
+  background: #18181b;
+  color: #fff;
+  border-right: 1px solid #23232b;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  max-width: 320px;
+  box-shadow: 2px 0 8px #0002;
+}
+
+.browser-window {
+  flex: 1;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.browser-navbar {
+  height: 48px;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 1px 4px #0001;
+}
+
+.browser-content {
+  flex: 1;
+  background: #fff;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+@media (max-width: 700px) {
+  aside {
+    width: 56px;
+    min-width: 56px;
+  }
 }
 </style>
